@@ -25,7 +25,7 @@ if len(player_guess) == secret_word_length:
         if index_being_tested == secret_word[word_index_number]:
             resulting_emojis = resulting_emojis + GREEN_BOX
         else:
-            #player_guess_somewhere_else: bool = False
+            player_guess_somewhere_else = False
             alt_word_index_number: int = 0
             while not player_guess_somewhere_else and alt_word_index_number < secret_word_length:
                 if index_being_tested == secret_word[alt_word_index_number]:
