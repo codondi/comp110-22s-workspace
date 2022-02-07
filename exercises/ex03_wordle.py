@@ -1,13 +1,9 @@
 """Structured and more realistic wordle."""
 
-__author__ = 730449161
-
-
-from pyexpat.errors import codes
-
+__author__ = "730449161"
 
 def contains_char(word_being_searched: str, character_being_searched: str) -> bool:
-    """When given a two strings, the first of any length, the second a single character, will return True if the single character of the second string is found in the first string. """
+    """When given a two strings, the first of any length, the second a single character, will return True if the single character of the second string is found in the first string."""
     assert len(character_being_searched) == 1
     i = 0
     while i < len(word_being_searched):
@@ -18,29 +14,21 @@ def contains_char(word_being_searched: str, character_being_searched: str) -> bo
     return False
 
 def emojified(player_guess: str, secret_word: str) -> str:
-    """Given two strings of equal length, will return a string of emojis who's colr codifies the same. """
-    
+    """Given two strings of equal length, will return a string of emojis who's colr codifies the same."""
     assert len(player_guess) == len(secret_word)
-    
+
     i = 0
     WHITE_BOX: str = "\U00002B1C"
     GREEN_BOX: str = "\U0001F7E9"
     YELLOW_BOX: str = "\U0001F7E8"
     resulting_emojis: str = ""
     player_guess_somewhere_else: bool = False
-    alt_i: int = 0
     
     while i < len(player_guess):
         if player_guess[i] == secret_word[i]:
             resulting_emojis += GREEN_BOX
         else:
-            player_guess_somewhere_else = False
-            alt_i = 0
-            while not player_guess_somewhere_else and (alt_i < len(secret_word)):
-                if player_guess[i] == secret_word[alt_i]:
-                    player_guess_somewhere_else = True
-                alt_i += 1
-            if player_guess_somewhere_else:
+            if contains_char(secret_word, player_guess[i]):
                 resulting_emojis += YELLOW_BOX
             else:
                 resulting_emojis += WHITE_BOX
@@ -49,8 +37,7 @@ def emojified(player_guess: str, secret_word: str) -> str:
     return resulting_emojis
 
 def input_guess(expected_length: int) -> str:
-    "Will prompt the user for a guess until one is made of the proper length. Returns the guess."
-    
+    """Will prompt the user for a guess until one is made of the proper length. Returns the guess."""
     characters_match: bool = False
     
     player_guess: str = str(input(f"Enter a { expected_length } character word: "))
@@ -86,14 +73,5 @@ def main() -> None:
         print(f"You won in { used_turns }/6 turns!" )
     else:
         print("X/6 - Sorry, try again tomorrow!")
-
 if __name__ == "__main__":
     main()
-    
-
-
-
-    
-
- 
-
