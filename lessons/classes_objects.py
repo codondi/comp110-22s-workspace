@@ -5,9 +5,14 @@ class Pizza:
     """Models the idea of a Pizza."""
 
     # Attribute Definitions
-    size: str = "small"
-    toppings: int = 0
+    size: str
+    toppings: int
     extra_cheese: bool = False 
+
+    def __init__(self, size: str, toppings: int):
+        """Constructor definition for initialization of attributes."""
+        self.size = size
+        self.toppings = toppings
 
     def price(self, tax: float) -> float:
         """Calculate the price of a pizza."""
@@ -27,14 +32,13 @@ class Pizza:
         return total
 
 
-a_pizza: Pizza = Pizza()
-a_pizza.size = "large"
-a_pizza.toppings = 3
-a_pizza.extra_cheese = False
+a_pizza: Pizza = Pizza("Large", 3)
 print(Pizza)
 print(a_pizza)
 print(a_pizza.size)
 print(f"Price: ${a_pizza.price(1.05)} ")
 
-another_pizza: Pizza = Pizza()
+another_pizza: Pizza = Pizza("small", 0)
+another_pizza.extra_cheese = True
 print(a_pizza.size)
+print(f"Price: ${another_pizza.price(1.05)}")
